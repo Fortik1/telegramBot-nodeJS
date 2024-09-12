@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 import * as cheerio from "cheerio";
 import { parseFromString } from 'dom-parser';
 
-const parserHTML = async () => {
+const parserScheduleHTML = async () => {
     const link = 'https://schedule.mstimetables.ru/publications/cdb2a14c-a891-4f9f-b56c-7e8eb559c766#/groups';
 
     const browser = await puppeteer.launch({
@@ -37,10 +37,9 @@ const parserHTML = async () => {
         }
     });
 
-    console.log(normalizeArray);
-
-
     await browser.close();
+
+    return normalizeArray;
 };
 
-export default parserHTML;
+export default parserScheduleHTML;
