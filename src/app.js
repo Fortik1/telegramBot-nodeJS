@@ -1,5 +1,6 @@
-import parser from './scripts/parserScheduleHTML.js'
+import parser from './scripts/parserScheduleHTML.js';
+import addGroupList from "./scripts/addGroupList.js";
 
 export default async () => {
-   const normalizeDataSheduleAll = await parser();
+   addGroupList(await parser());
 };

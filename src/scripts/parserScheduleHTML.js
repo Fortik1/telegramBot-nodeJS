@@ -5,9 +5,7 @@ import { parseFromString } from 'dom-parser';
 const parserScheduleHTML = async () => {
     const link = 'https://schedule.mstimetables.ru/publications/cdb2a14c-a891-4f9f-b56c-7e8eb559c766#/groups';
 
-    const browser = await puppeteer.launch({
-        executablePath: '/usr/bin/chromium-browser'
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.goto(link, {
