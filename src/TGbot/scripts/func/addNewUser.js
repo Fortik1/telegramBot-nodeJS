@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { cwd } from 'node:process';
 import getDataBD from "./getDataBD.js";
 
-const filePath = resolve(cwd(), 'src/TGbot/secret/simpleBD.json');
+const filePath = resolve(cwd(), 'src/TGbot/simpleBD.json');
 
 export default (userInfo) => {
     const { id, first_name, username, chat_id} = userInfo;

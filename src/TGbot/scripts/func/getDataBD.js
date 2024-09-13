@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { cwd } from 'node:process';
 
 export default (name = 'all') => {
-    const filePath = resolve(cwd(), 'src/TGbot/secret/simpleBD.json');
+    const filePath = resolve(cwd(), 'src/TGbot/simpleBD.json');
     const parseData = JSON.parse(fs.readFileSync(filePath, (err, data) => data));
     switch (name) {
         case 'users_list': {

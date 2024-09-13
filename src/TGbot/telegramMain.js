@@ -1,11 +1,10 @@
 import TelegramBot from'node-telegram-bot-api';
 import startBot from './scripts/processingCommandBots/startBot.js';
 import registerUser from './scripts/processingCommandBots/registerUser.js';
-import getApiKeyBot from './getApiKeyBot.js';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const { API_KEY_BOT } = getApiKeyBot();
-
-const bot = new TelegramBot(API_KEY_BOT, {
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, {
     polling: true
 });
 
