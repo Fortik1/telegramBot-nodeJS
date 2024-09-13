@@ -1,3 +1,3 @@
-{
-  "API_KEY_BOT": "7318355542:AAGM0ZFOnVZVU34_dCVDgOA3UG-ArCPkWT0"
-}
+const API_KEY_BOT = '';
+
+export {API_KEY_BOT};
