@@ -1,4 +1,3 @@
 node_modules
 .idea
-src/TGbot/config.js
-src/TGbot/simpleBD.json
+src/TGbot/secret
