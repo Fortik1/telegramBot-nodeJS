@@ -16,10 +16,14 @@
     "globals": "^15.9.0"
   },
   "dependencies": {
+    "@yandex-cloud/nodejs-sdk": "^2.7.7",
     "cheerio": "^1.0.0",
     "dom-parser": "^1.1.5",
     "dotenv": "^16.4.5",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.6.2",
     "node-telegram-bot-api": "^0.66.0",
-    "puppeteer": "^23.3.0"
+    "puppeteer": "^23.3.0",
+    "ydb-sdk": "^5.3.4"
   }
 }
