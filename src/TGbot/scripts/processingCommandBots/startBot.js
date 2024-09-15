@@ -1,5 +1,6 @@
 import { startBot, newUser } from '../../answerText.js';
 import checkUserInBd from '../func/checkUserInList.js';
+import getDataBD from "../func/getDataBD.js";
 import getNameGroup from "../func/getNameGroup.js";
 
 export default (bot) => async (msg) => {
@@ -11,7 +12,10 @@ export default (bot) => async (msg) => {
         } else {
             await bot.sendMessage(msg.chat.id, newUser, {
                 reply_markup: {
-                    inline_keyboard: getNameGroup()
+                    inline_keyboard: [
+                        [{ text: 'Поиск по названию', callback_data: 'search'}],
+                        [{ text: 'Весь список групп', callback_data: 'allGroupList'}]
+                    ]
                 }
             });
         }
