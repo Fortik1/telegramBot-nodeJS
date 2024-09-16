@@ -1,14 +1,13 @@
 import { startBot, newUser } from '../../answerText.js';
 import checkUserInBd from '../func/checkUserInList.js';
-import getDataBD from "../func/getDataBD.js";
-import getNameGroup from "../func/getNameGroup.js";
+import sendNumberGroup from "../func/sendNumberGroup.js";
 
 export default (bot) => async (msg) => {
     try {
         await bot.sendMessage(msg.chat.id, startBot);
 
         if (checkUserInBd(msg.from.id)) {
-           // await bot.sendMessage(msg.chat.id, registerText); ToDo сообщить пользователю к какой группе он прекриплен
+            await bot.sendMessage(msg.chat.id, sendNumberGroup(msg.from.id));
         } else {
             await bot.sendMessage(msg.chat.id, newUser, {
                 reply_markup: {
