@@ -1,6 +1,5 @@
 import { parseFromString } from 'dom-parser';
 import * as cheerio from "cheerio";
-import getCurrentDate from "./getCurrentDate.js";
 import getContentByRef from "./getContentByRef.js";
 
 const parserScheduleHTML = async () => {
@@ -18,10 +17,8 @@ const parserScheduleHTML = async () => {
             .map((el) => elementsArray.push(el));
     });
 
-    const weekDate = getCurrentDate();
-
     const normalizeArray = elementsArray.map((element) => {
-        const linkSchedule = link + element.attributes[1].value.split('groups')[1] + '?date=' + weekDate;
+        const linkSchedule = link + element.attributes[1].value.split('groups')[1];
         const nameGroup = element.childNodes[0].text;
         return {
             nameGroup,

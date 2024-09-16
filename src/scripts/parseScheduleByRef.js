@@ -1,12 +1,13 @@
 import { parseFromString } from 'dom-parser';
 import * as cheerio from "cheerio";
 import getContentByRef from "./getContentByRef.js";
+import getCurrentDate from "./getCurrentDate.js";
 
 
 export default async (link) => {
     //const testLink = 'https://schedule.mstimetables.ru/publications/cdb2a14c-a891-4f9f-b56c-7e8eb559c766#/groups/11/lessons?date=2024-09-16';
 
-    const content = await getContentByRef(link);
+    const content = await getContentByRef(link + '?date' + getCurrentDate());
 
     const $ = cheerio.load(content);
 
@@ -51,7 +52,7 @@ export default async (link) => {
 
         const data = {
             weekDay: span[0].childNodes[0].text,
-            date: span[2].childNodes[0].text,
+            date: span[2].childNodes[0].text == '-' ? span[3].childNodes[0].text + ' (Сегодня)': span[2].childNodes[0].text,
             lessons
         };
 
