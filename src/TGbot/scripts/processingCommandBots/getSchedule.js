@@ -1,6 +1,6 @@
 import getLinkByUserId from "../func/getLinkByUserId.js";
-import parseScheduleByRef from "../../../scripts/parseScheduleByRef.js";
 import createMessageSchedule from "../func/createMessageSchedule.js";
+import {getSchedule} from "../../../scripts/getSchedule.js";
 
 export default (bot) => async (msg) => {
     try {
@@ -10,7 +10,7 @@ export default (bot) => async (msg) => {
 
         const link = getLinkByUserId(msg.from.id);
 
-       const schedule = createMessageSchedule(await parseScheduleByRef(link));
+       const schedule = createMessageSchedule(await getSchedule(link));
 
        await bot.editMessageText(schedule, {
           chat_id: waitMessage.chat.id,

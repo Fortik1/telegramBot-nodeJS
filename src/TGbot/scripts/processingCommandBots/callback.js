@@ -1,6 +1,7 @@
 import { search } from "../../answerText.js";
 import registerUser from "./registerUser.js";
 import getDataBD from "../func/getDataBD.js";
+import getGroups from "../../../scripts/getGroups.js";
 
 export default (bot) => async (ctx) => {
     try {
@@ -14,12 +15,13 @@ export default (bot) => async (ctx) => {
                 break;
             }
             case 'allGroupList': {
+                const groups = await getGroups();
                 await bot.editMessageText('Вот список всех групп', {
                    chat_id: ctx.message.chat.id,
                     message_id: ctx.message.message_id,
                     reply_markup: {
-                        inline_keyboard: getDataBD('group_list').reduce((acc, { name_group }) => {
-                            acc.push([{ text: name_group, callback_data: name_group }]);
+                        inline_keyboard: groups.reduce((acc, el) => {
+                            acc.push([{ text: el.name, callback_data: `${el.name}_${el.id}` }]);
                             return acc;
                         }, [])
                     }
@@ -28,7 +30,8 @@ export default (bot) => async (ctx) => {
             }
             default: {
                 registerUser(ctx);
-                await bot.sendMessage(ctx.message.chat.id, `Прикрепил вас к группе ${ctx.data}`, {
+                await bot.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
+                await bot.sendMessage(ctx.message.chat.id, `Прикрепил вас к группе ${ctx.data.split('_')[0]}`, {
                    reply_markup: {
                        keyboard: [
                            ['Расписание']
