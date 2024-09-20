@@ -5,7 +5,7 @@ import getDataBD from "./getDataBD.js";
 
 const filePath = resolve(cwd(), 'src/TGbot/simpleBD.json');
 
-export default ({ id, name_group }) => {
+export default ({ id, group_name, group_id }) => {
     try {
         const data = getDataBD();
         let userData;
@@ -16,7 +16,8 @@ export default ({ id, name_group }) => {
             };
         };
 
-        userData.name_group = name_group;
+        userData.group_name = group_name;
+        userData.group_id = group_id;
 
         fs.writeFileSync(filePath, JSON.stringify(data));
     } catch (e) {

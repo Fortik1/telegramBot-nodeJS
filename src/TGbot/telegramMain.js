@@ -6,6 +6,7 @@ import search from "./scripts/processingCommandBots/search.js";
 import * as dotenv from 'dotenv';
 import callback from "./scripts/processingCommandBots/callback.js";
 import setGroup from "./scripts/processingCommandBots/setGroup.js";
+import getGroups from "../scripts/getGroups.js";
 dotenv.config();
 
 export default () => {
@@ -18,7 +19,6 @@ export default () => {
     bot.onText(/\/start/, startBot(bot));
 
     bot.on("callback_query", callback(bot));
-
     //bot.onText(/\/reg/, registerUser(bot));
 
     bot.onText(/группа/i, search(bot));

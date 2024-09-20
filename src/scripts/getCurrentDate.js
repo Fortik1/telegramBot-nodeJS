@@ -1,17 +1,16 @@
 export default () => {
     const today = new Date();
-    let nextMonday;
-    if (today.getDay() === 0) {
-        nextMonday = new Date(
-            today.getTime() + (1 + (1 - today.getDay() + 7) % 7) * 86400000
-        );
-    } else {
-        nextMonday = new Date(
-            today.getFullYear(),
-            today.getMonth(),
-            today.getDay() - today.getDay() + 1
-        );
-    }
+    const dayOfWeek = today.getDay();
 
-    return nextMonday.toISOString().slice(0, 10);
+    const offset = (dayOfWeek === 0) ? 1 : 0;
+
+    const mondayDate = new Date(today);
+    mondayDate.setDate(today.getDate() - dayOfWeek + 1 + (7 * offset));
+
+    const year = mondayDate.getFullYear();
+    const month = String(mondayDate.getMonth() + 1).padStart(2, '0');
+    const day = String(mondayDate.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+
 };

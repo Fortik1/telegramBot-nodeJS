@@ -4,7 +4,7 @@ export default (userId) => {
     let name_group;
     for (const user of getDataBD('users')) {
         if (user.user_id === userId) {
-            name_group = user.name_group;
+            name_group = user.group_name;
             break;
         };
     };
