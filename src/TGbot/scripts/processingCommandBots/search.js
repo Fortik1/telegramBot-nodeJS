@@ -1,12 +1,12 @@
-import getDataBD from "../func/getDataBD.js";
 import { searchResult } from "../../answerText.js";
+import getGroups from "../../../scripts/getGroups.js";
 
 export default (bot) => async (msg) => {
     try {
-        const groupList = getDataBD('group_list');
-        const searchGroup = groupList.reduce((acc, { name_group }) => {
-            if (name_group.toLowerCase().includes(msg.text.split(/группа /i)[1].toLowerCase())) {
-                acc.push([{ text: name_group, callback_data: name_group }]);
+        const groupList = await getGroups();
+        const searchGroup = groupList.reduce((acc, el) => {
+            if (el.name.toLowerCase().includes(msg.text.split(/группа /i)[1].toLowerCase())) {
+                acc.push([{ text: el.name, callback_data: `${el.name}_${el.id}`}]);
             }
             return acc;
         }, []);

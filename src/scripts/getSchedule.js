@@ -2,16 +2,13 @@ import axios from "axios";
 
 const link = 'https://schedule.mstimetables.ru/api/publications/group/lessons';
 
-export const getSchedule = async (_groupInfo) => {
-    const groupInfo = {
-        groupId: 13,
-        date: "2024-09-16",
-        publicationId: "cdb2a14c-a891-4f9f-b56c-7e8eb559c766" // всегда использовать это, т.к. это наша ссылка на наше расписание
-    };
+export const getSchedule = async (groupInfo) => {
+
+    const { date } = groupInfo;
 
     const { data } = await axios.post(link, groupInfo);
 
-    const scheduleWeek = data.lessons.reduce((acc, element, index) => {
+    const scheduleWeek = data.lessons.reduce((acc, element) => {
         const { weekday, lesson, startTime, endTime, teachers, cabinet, subject } = element;
 
         if (!acc[weekday]) {
@@ -37,26 +34,11 @@ export const getSchedule = async (_groupInfo) => {
 
     }, {});
 
-    // const d = {
-    //     1: {
-    //         1: {
-    //             startTime,
-    //             endTime,
-    //             lessons: [
-    //                 {
-    //                     lesson: "",
-    //                     teacher: "",
-    //                     cabinet: ""
-    //                 }
-    //             ]
-    //         }
-    //     }
-    // }
-
     const scheduleData = {
         groupName: data.group.name,
-
+        scheduleWeek,
+        dateStartWeek: date,
     };
 
-    console.log(scheduleWeek);
+    return scheduleData;
 };

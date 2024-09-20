@@ -1,6 +1,5 @@
 import { search } from "../../answerText.js";
 import registerUser from "./registerUser.js";
-import getDataBD from "../func/getDataBD.js";
 import getGroups from "../../../scripts/getGroups.js";
 
 export default (bot) => async (ctx) => {
