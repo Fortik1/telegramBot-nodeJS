@@ -11,8 +11,10 @@ dotenv.config();
 
 export default () => {
     const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, {
-        polling: true
+        polling: false
     });
+
+    bot.setWebHook(`https://your-vercel-url.vercel.app/api/bot`);
 
     bot.on("polling_error", err => console.log(err.data.error.message));
 
