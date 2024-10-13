@@ -10,7 +10,11 @@ export default (bot) => async (msg) => {
 
         const groupInfo = getInfoUserById(msg.from.id);
 
-       const scheduleArr = createMessageSchedule(await getSchedule(groupInfo));
+        console.log(groupInfo);
+
+        const schedule = await getSchedule(groupInfo);
+
+       const scheduleArr = createMessageSchedule(schedule);
 
        await bot.deleteMessage(waitMessage.chat.id, waitMessage.message_id);
 
@@ -18,20 +22,14 @@ export default (bot) => async (msg) => {
         let weekDay = 0;
         const weekDayArr = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
        for (const schedule of scheduleArr.slice(2)) {
-           // console.log(schedule.join(''));
-          await bot.sendMessage(msg.chat.id, `<b>${weekDayArr[weekDay]}</b>\n${schedule.join('\n')}`, {
-              parse_mode: 'HTML',
-              disable_notification: true
-          });
+           if (msg.text.toLowerCase() === 'вся неделя' || weekDayArr[weekDay].toLowerCase() === msg.text.toLowerCase()) {
+               await bot.sendMessage(msg.chat.id, `<b>${weekDayArr[weekDay]}</b>\n${schedule.join('\n')}`, {
+                   parse_mode: 'HTML',
+                   disable_notification: true
+               });
+           }
           weekDay += 1;
        };
-
-        // await bot.editMessageText(schedule, {
-       //    chat_id: waitMessage.chat.id,
-       //    message_id: waitMessage.message_id,
-       //     parse_mode: 'HTML'
-       // });
-
     } catch (e) {
         console.log(e);
     }

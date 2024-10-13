@@ -22,7 +22,7 @@
     "dom-parser": "^1.1.5",
     "dotenv": "^16.4.5",
     "mongodb": "^6.9.0",
-    "mongoose": "^8.6.2",
+    "mongoose": "^8.7.1",
     "node-emojis": "^0.0.5",
     "node-telegram-bot-api": "^0.66.0",
     "puppeteer": "^23.3.0",
