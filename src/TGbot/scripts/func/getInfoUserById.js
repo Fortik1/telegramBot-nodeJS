@@ -1,5 +1,6 @@
 import getDataBD from "./getDataBD.js";
 import getCurrentDate from "../../../scripts/getCurrentDate.js";
+
 export default (id) => {
     let userData;
 

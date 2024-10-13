@@ -33,7 +33,9 @@ export default (bot) => async (ctx) => {
                 await bot.sendMessage(ctx.message.chat.id, `Прикрепил вас к группе ${ctx.data.split('_')[0]}`, {
                    reply_markup: {
                        keyboard: [
-                           ['Расписание']
+                           ['Понедельник', 'Четверг'],
+                           ['Вторник', 'Пятница'],
+                           ['Среда', 'Вся неделя']
                        ],
                        resize_keyboard: true
                    }

@@ -2,7 +2,6 @@ import fs from 'fs';
 import { resolve } from 'node:path';
 import { cwd } from 'node:process';
 import getDataBD from "./getDataBD.js";
-
 const filePath = resolve(cwd(), 'src/TGbot/simpleBD.json');
 
 export default (userInfo) => {
